@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>$id$</id>
+        <version>$version$</version>
+        <authors>$author$</authors>
+        <projectUrl>https://github.com/dalance/D2dControl</projectUrl>
+        <licenseUrl>https://raw.githubusercontent.com/dalance/D2dControl/master/LICENSE</licenseUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>$description$</description>
+        <dependencies>
+            <dependency id="SharpDX" version="2.6.3" />
+            <dependency id="SharpDX.Direct2D1" version="2.6.3" />
+            <dependency id="SharpDX.Direct3D11" version="2.6.3" />
+            <dependency id="SharpDX.Direct3D9" version="2.6.3" />
+            <dependency id="SharpDX.DXGI" version="2.6.3" />
+        </dependencies>
+    </metadata>
+</package>
