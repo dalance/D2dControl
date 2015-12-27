@@ -54,6 +54,10 @@ namespace D2dControl {
         }
 
         public void Clear() {
+            foreach ( var key in resources.Keys ) {
+                var res = resources[key];
+                Disposer.SafeDispose( ref res );
+            }
             generators.Clear();
             resources.Clear();
         }
@@ -71,9 +75,15 @@ namespace D2dControl {
         }
 
         public bool Remove( string key ) {
-            bool ret0 = generators.Remove( key );
-            bool ret1 = resources.Remove( key );
-            return ret0 & ret1;
+            object res;
+            if ( resources.TryGetValue( key, out res ) ) {
+                Disposer.SafeDispose( ref res );
+                generators.Remove( key );
+                resources.Remove( key );
+                return true;
+            } else {
+                return false;
+            }
         }
 
         public bool TryGetValue( string key, out object res ) {
