@@ -161,13 +161,13 @@ namespace D2dControl {
             var surface = renderTarget.QueryInterface<Surface>();
 
             d2DFactory = new SharpDX.Direct2D1.Factory();
-            var rtp = new RenderTargetProperties(new PixelFormat(Format.Unknown, AlphaMode.Premultiplied));
+            var rtp = new RenderTargetProperties(new PixelFormat(Format.Unknown, SharpDX.Direct2D1.AlphaMode.Premultiplied));
             d2DRenderTarget = new RenderTarget( d2DFactory, surface, rtp );
             resCache.RenderTarget = d2DRenderTarget;
 
             d3DSurface.SetRenderTarget( renderTarget );
 
-            device.ImmediateContext.Rasterizer.SetViewport( new Viewport( 0, 0, width, height, 0.0f, 1.0f ) );
+            device.ImmediateContext.Rasterizer.SetViewport( 0, 0, width, height, 0.0f, 1.0f );
         }
 
         private void StartRendering() {
