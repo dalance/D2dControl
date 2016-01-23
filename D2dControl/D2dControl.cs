@@ -54,6 +54,18 @@ namespace D2dControl {
             protected set { SetValue( FpsPropertyKey, value ); }
         }
 
+        public static DependencyProperty RenderWaitProperty = DependencyProperty.Register(
+            "RenderWait",
+            typeof(int),
+            typeof(D2dControl),
+            new FrameworkPropertyMetadata( 2, OnRenderWaitChanged )
+            );
+
+        public int RenderWait {
+            get { return (int)GetValue( RenderWaitProperty ); }
+            set { SetValue( RenderWaitProperty, value ); }
+        }
+
         // - public methods --------------------------------------------------------------
 
         public D2dControl() {
@@ -107,6 +119,11 @@ namespace D2dControl {
             } else {
                 StopRendering();
             }
+        }
+
+        private static void OnRenderWaitChanged(DependencyObject d, DependencyPropertyChangedEventArgs e) {
+            var control = (D2dControl)d;
+            control.d3DSurface.RenderWait = (int)e.NewValue;
         }
 
         // - private methods -------------------------------------------------------------

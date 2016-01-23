@@ -1,5 +1,6 @@
 ﻿using SharpDX.Direct3D9;
 using System;
+using System.Threading;
 using System.Windows.Interop;
 
 namespace D2dControl {
@@ -14,6 +15,8 @@ namespace D2dControl {
         private Texture renderTarget;
 
         // - property --------------------------------------------------------------------
+
+        public int RenderWait { get; set; } = 2; // default: 2ms
 
         // - public methods --------------------------------------------------------------
 
@@ -34,6 +37,9 @@ namespace D2dControl {
         public void InvalidateD3DImage() {
             if( renderTarget != null ) {
                 base.Lock();
+                if( RenderWait != 0 ) {
+                    Thread.Sleep( RenderWait );
+                }
                 base.AddDirtyRect( new System.Windows.Int32Rect( 0, 0, base.PixelWidth, base.PixelHeight ) );
                 base.Unlock();
             }
