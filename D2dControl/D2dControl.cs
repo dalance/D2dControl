@@ -150,7 +150,12 @@ namespace D2dControl {
             Disposer.SafeDispose( ref device );
         }
 
-        private void CreateAndBindTargets() {
+        private void CreateAndBindTargets()
+        {
+            if (d3DSurface == null) {
+                return;
+            }
+
             d3DSurface.SetRenderTarget( null );
 
             Disposer.SafeDispose( ref d2DRenderTarget );
